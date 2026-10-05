@@ -30,15 +30,9 @@
 		<java.version>17</java.version>
 	</properties>
 	<dependencies>
-		
 		<dependency>
-		    <groupId>org.springframework.boot</groupId>
-		    <artifactId>spring-boot-starter-webservices</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>wsdl4j</groupId>
-		    <artifactId>wsdl4j</artifactId>
-		    <version>1.6.3</version>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-webservices</artifactId>
 		</dependency>
 
 		<dependency>
@@ -51,34 +45,8 @@
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-			    <artifactId>jaxb2-maven-plugin</artifactId>
-			    <version>3.3.0</version>
-			
-			    <executions>
-			        <execution>
-			            <id>xjc</id>
-			
-			            <goals>
-			                <goal>xjc</goal>
-			            </goals>
-			
-			        </execution>
-			    </executions>
-			
-			    <configuration>
-			
-			        <sources>
-			            <source>
-			                src/main/resources/alunos.xsd
-			            </source>
-			        </sources>
-			
-			        <packageName>
-			            br.gov.sp.cps.alunos_soap.model
-			        </packageName>
-			
-			    </configuration>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>
