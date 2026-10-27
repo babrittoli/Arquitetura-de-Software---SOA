@@ -42,43 +42,74 @@
 		</dependency>
 		
 		<dependency>
-		    <groupId>wsdl4j</groupId>
-		    <artifactId>wsdl4j</artifactId>
-		    <version>1.6.3</version>
+    		<groupId>wsdl4j</groupId>
+    		<artifactId>wsdl4j</artifactId>
+    		<version>1.6.3</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework.ws</groupId>
+			<artifactId>spring-ws-security</artifactId>
+		</dependency>
+		
 	</dependencies>
 
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-			    <artifactId>jaxb2-maven-plugin</artifactId>
-			    <version>3.3.0</version>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
 			
-			    <executions>
-			        <execution>
-			            <id>xjc</id>
-			
-			            <goals>
-			                <goal>xjc</goal>
-			            </goals>
-			
-			        </execution>
-			    </executions>
-			
-			    <configuration>
-			
-			        <sources>
-			            <source>
-			                src/main/resources/produtos.xsd
-			            </source>
-			        </sources>
-			
-			        <packageName>
-			            br.gov.sp.cps.produtos_soap.model
-			        </packageName>
-			
-			    </configuration>
+			<plugin>
+    <groupId>org.codehaus.mojo</groupId>
+    <artifactId>jaxb2-maven-plugin</artifactId>
+    <version>3.3.0</version>
+
+    <executions>
+        <execution>
+            <id>xjc</id>
+
+            <goals>
+                <goal>xjc</goal>
+            </goals>
+
+        </execution>
+    </executions>
+
+    <configuration>
+
+        <sources>
+            <source>
+                src/main/resources/produtos.xsd
+            </source>
+        </sources>
+
+        <packageName>
+            br.gov.sp.cps.produtos_soap.model
+        </packageName>
+
+    </configuration>
+	</plugin>
+			<plugin>
+				<groupId>org.jvnet.jaxb</groupId>
+				<artifactId>jaxb-maven-plugin</artifactId>
+				<version>4.0.9</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+					</execution>
+				</executions>
+				
+				<configuration>
+					<schemaDirectory>src/main/resources/</schemaDirectory>
+					<schemaIncludes>
+						<include>produtos.xsd</include>
+					</schemaIncludes>
+					<generatePackage>br.gov.sp.cps.produtos_soap.schema</generatePackage>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
