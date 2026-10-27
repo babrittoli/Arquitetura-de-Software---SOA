@@ -1,7 +1,10 @@
 package br.gov.sp.cps.produtos_soap.endpoint;
 
+import br.gov.sp.cps.produtos_soap.exception.ProdutoNaoEncontradoException;
 import br.gov.sp.cps.produtos_soap.model.ConsultarProdutoRequest;
 import br.gov.sp.cps.produtos_soap.model.ConsultarProdutoResponse;
+import br.gov.sp.cps.produtos_soap.model.ConsultarProdutoRequest;
+//import br.gov.sp.cps.produtos_soap.model.ConsultarProdutoResponse;
 
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
@@ -25,22 +28,11 @@ public class ProdutoEndpoint {
             response.setDescricao("Notebook com 16GB de RAM e SSD de 512GB");
             response.setMarca("Avell");
             response.setQuantidadeEstoque(25);
-
-        } else if (request.getCodigo() == 456) {
-
-            response.setNome("Mouse sem fio Harry Potter");
-            response.setDescricao("Mouse ergonômico sem fio com sensor de alta precisão collab Harry Potter");
-            response.setMarca("Logitech");
-            response.setQuantidadeEstoque(20);
-
         } else {
 
-            response.setNome( "Produto não encontrado" );
-            response.setDescricao("-");
-            response.setMarca("-");
-            response.setQuantidadeEstoque(0);
+        throw new ProdutoNaoEncontradoException(
+                "Produto não encontrado: " + request.getCodigo());
         }
-
         return response;
     }
 }
